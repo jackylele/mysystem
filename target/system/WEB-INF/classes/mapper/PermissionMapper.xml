@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sy.mapper.PermissionMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.sy.entity.Permission">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="skey" column="SKEY" />
+		<result property="hide" column="HIDE" />
+		<result property="url" column="URL" />
+		<result property="sort" column="SORT" />
+		<result property="parentKey" column="PARENT_KEY" />
+	</resultMap>
+
+	<sql id="find_xxx">
+		<![CDATA[
+	    	SELECT ID , HIDE , SKEY , NAME , PARENT_KEY, SORT , URL
+	    ]]>
+	</sql>
+
+	<sql id="find_AS_R">
+		<![CDATA[
+	    	SELECT P.ID , P.HIDE , P.SKEY , P.NAME , P.PARENT_KEY , SORT , P.URL
+	    ]]>
+	</sql>
+
+	<sql id="from_xxx">
+		<![CDATA[
+	    	FROM PERMISSION
+	    ]]>
+	</sql>
+
+	<sql id="where_xxx">
+		<![CDATA[
+	    	WHERE 1=1
+	    ]]>
+	</sql>
+
+	<select id="findPermissionByUserId" parameterType="string" resultMap="BaseResultMap">
+		<include refid="find_AS_R" />
+		<![CDATA[
+			FROM PERMISSION P , USER_ROLE UR , ROLE_PERMISSION RP
+			WHERE RP.PERMISSION_ID=P.ID AND RP.ROLE_ID=UR.ROLE_ID
+			AND UR.USER_ID=#{userId}
+			ORDER BY P.SORT ASC
+		 ]]>
+	</select>
+
+	<select id="findPermissionByKey" parameterType="string" resultMap="BaseResultMap">
+		<include refid="find_xxx" />
+		<include refid="from_xxx" />
+		<![CDATA[
+			WHERE SKEY=#{permissionKey}
+		 ]]>
+	</select>
+
+
+</mapper>

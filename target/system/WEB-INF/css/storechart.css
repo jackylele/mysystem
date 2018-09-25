@@ -1,0 +1,415 @@
+
+body{
+	width: 100%;
+	height: 100%;
+	background: #021637;
+}
+
+.storebox{
+	width: 100%;
+	height: 100%;
+	
+}
+
+.storeheader{
+	width: 100%;
+	height: 60px;
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+.storeheader>div{
+	height: 60px;
+}
+.leftheader,.rightheader{
+	width: 30%;
+	background: #0c1e49;
+}
+.middleheaderbox{
+	width: 40%;
+	color: white;
+	font-size: 32px;
+	line-height: 60px;
+	text-align: center;
+	background: #16275B;
+	font-family: "华文中宋";
+}
+.storename,.timefresh{
+	width: 100%;
+	height: 100%;
+	color: white;
+	display: flex;
+	align-items: center;
+	font-family: "华文中宋";
+	justify-content: flex-start;
+}
+
+
+.middlehead{
+	width: 84%;
+	height: 60%;
+	border-top: 1px solid #6196A8;
+	border-bottom: 1px solid #6196A8;
+	position: relative;
+}
+.logoname{
+	width: 100%;
+	line-height: 48px;
+	text-align: center;
+	color: white;
+	font-size: 28px;
+	font-family: "华文中宋";
+}
+.oneArrow{
+	position: absolute;
+	left: -10%;
+	top: 0;
+	width: 10%;
+    height: 100%;
+    background: url(../temp/left.jpg)no-repeat center center;
+    background-size: 100% 105%;
+}
+.twoArrow{
+	position: absolute;
+	right: -10%;
+	top: 0;
+	width: 10%;
+    height: 100%;
+    background: url(../temp/left.jpg)no-repeat center center;
+    background-size: 100% 105%;
+    transform: rotateY(180deg);
+}
+.rhspanf{
+	background: url(../temp/max.png)no-repeat center center;
+}
+
+
+.echartonebox{
+	width: 100%;
+	height: 355px;
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+.instore{
+	width: 58%;
+	height: 355px;
+	border: 1px solid #1A2127;
+	box-sizing: border-box;
+}
+
+
+#inechart{
+	width: 100%;
+	height: 350px;
+	display: flex;
+	justify-content: space-between;
+	
+}
+#inechart>div{
+	height: 350px;
+}
+#income{
+	width: 100%;
+}
+#takedelivery,#grounding{
+	width: 24%;
+}
+
+.tiphead ,.outstorehead{
+	width: 100%;
+	height: 35px;
+	position: relative;
+}
+.tiphead>p,.outstorehead>p{
+	color: white;/*5B9DB3*/
+	font-size: 16px;
+	text-align: center;
+	font-weight: 700;
+}
+.tiphead>span,.outstorehead>span{
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	color: #ccc;
+	font-size: 12px;
+}
+
+.tipfoot{
+	width: 100%;
+	height: 20px;
+	position: relative;
+	float: right;
+	display: flex;
+	justify-content: space-between;
+}
+.tipfoot>span{
+	height: 5px;
+	line-height: 35px;
+	color: white;
+	display: inline-block;
+	text-align: center;
+	border-top:0;
+	font-size: 14px;
+}
+.tipfoot>span:nth-child(1){
+	width: 47%;
+}
+.tipfoot>span:nth-child(2){
+	width: 24%;
+}
+.tipfoot>span:nth-child(3){
+	width: 24%;
+}
+.outstore{
+	width: 41%;
+	height: 355px;
+	border: 1px solid #1A2127;
+	box-sizing: border-box;
+}
+
+.outstoreone{
+	width: 95%;
+	height: 120px;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+.outstoreone>div{
+	width: 48%;
+}
+
+
+.outstoretwo{
+	/*text-align: center;*/
+	width: 95%;
+	height: 130px;
+	margin: auto;
+	/*display: flex;*/
+	justify-content: space-between;
+}
+.outstoretwo>div{
+	width: 33%;
+	height: 130px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+.outstoretwo>button{
+
+	width: 133px;
+	height: 30px;
+	margin: 5px;
+	margin-left: 84px;
+}
+.waitingpic,.picking,.picked{
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	font-size: 28px;
+	line-height: 90px;
+	text-align: center;
+	color: white;
+}
+.waitingpic{
+	border: 1px solid #ff5000;
+}
+.picking{
+	border: 1px solid white; 
+}
+.picked{
+	border: 1px solid white;
+}
+.outstorefoot{
+	width: 95%;
+	height: 18px;
+	background: white;
+	line-height: 18px;
+	text-align: center;
+	font-size: 14px;
+	margin: auto;
+}
+.echarttwobox{
+	width: 100%;
+	height: 355px;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+}
+.echartbottomleft{
+	width: 58%;
+	height: 355px;
+	border: 1px solid #1A2127;
+	box-sizing: border-box;
+}
+.echartbottomright{
+	width: 41%;
+	height: 355px;
+	border: 1px solid #1A2127;
+	box-sizing: border-box;
+}
+#output{
+	width: 100%;
+	height: 300px;
+}
+.outputlist{
+	width: 95%;
+	height: 270px;
+	margin: auto;
+}
+.listhead{
+	width: 100%;
+	height: 30px;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 2px solid #1A2127;
+}
+.listhead>div{
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: white;
+	font-size: 12px;
+}
+.listhead>div:nth-child(1){
+	width: 40%;
+}
+.listhead>div:nth-child(2){
+	width: 30%;
+}
+.listhead>div:nth-child(3){
+	width: 30%;
+}
+
+.listitem{
+	width: 100%;
+	height: 35px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.listitem>div{
+	color: white;
+	font-size: 14px;
+	text-align: center;
+	line-height: 30px;
+}
+.listitem>div:nth-child(1){
+	width: 40%;
+}
+.listitem>div:nth-child(2){
+	width: 30%;
+}
+.listitem>div:nth-child(3){
+	width: 30%;
+}
+
+
+
+
+
+
+.publicClass{
+	position: relative;
+}
+.publicClass>span{
+	display: inline-block;
+	background: #29ACC9;
+	position: absolute;
+	box-shadow: 0px 0px 10px #29ACC9;
+}
+.publicClass>span:nth-child(1){
+	top: 0;
+	left: 0;
+	width: 2px;
+	height: 20px;
+}
+.publicClass>span:nth-child(2){
+	top: 0;
+	left: 0;
+	width: 20px;
+	height: 2px;
+}
+.publicClass>span:nth-child(3){
+	top: 0;
+	right: 0;
+	width: 20px;
+	height: 2px;
+}
+.publicClass>span:nth-child(4){
+	top: 0;
+	right: 0;
+	width: 2px;
+	height: 20px;
+}
+.publicClass>span:nth-child(5){
+	bottom: 0;
+	left: 0;
+	width: 20px;
+	height: 2px;
+}
+.publicClass>span:nth-child(6){
+	bottom: 0;
+	left: 0;
+	width: 2px;
+	height: 20px;
+}
+.publicClass>span:nth-child(7){
+	bottom: 0;
+	right: 0;
+	width: 20px;
+	height: 2px;
+}
+.publicClass>span:nth-child(8){
+	bottom: 0;
+	right: 0;
+	width: 2px;
+	height: 20px;
+}
+
+
+.maxvalue>div{
+	color: #ff5000;
+}
+
+.minvalue>div{
+	color: greenyellow;
+}
+
+.timefresh .rhspans{
+	background: url(../temp/timelogo.jpg)no-repeat center center;
+	text-align: center;
+
+}
+.storename .storenamespan{
+	background: url(../temp/storename.jpg)no-repeat center center;
+}
+.time{
+	color: black;
+	border-radius: 3px;
+	outline: none;
+	border: 1px solid white;
+	width:140px;
+	background: linear-gradient(white,darkgray);
+}
+.timeShow{
+	margin-left:50px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

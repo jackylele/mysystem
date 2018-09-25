@@ -1,0 +1,5 @@
+@charset "utf-8";
+/* 你自己的样式 */
+.table .text-c th, .table .text-c td{
+    background-color: #5a98de;
+}

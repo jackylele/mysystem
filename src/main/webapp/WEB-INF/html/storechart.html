@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/storechart.css">
+		<script src="../js/My97DatePicker/4.8/WdatePicker.js"></script>
+		<script type="text/javascript" src="../js/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/layer/2.4/layer.js"></script>
+
+
+	</head>
+	<body>
+		<div class="storebox">
+			<div class="storeheader">
+				<div class="leftheader">
+					<div style="width: 100%;height: 50%;"></div>
+					<div style="width: 100%;height: 50%;">
+						<div class="storename"><span class="storenamespan" style="display: inline-block;width: 20px;height: 20px;border-right: 1px solid white;margin:0 5px;"></span>学校名称：
+							<span class="mendianName">南京邮电大学</span></div>
+					</div>
+				</div>
+				<div class="middleheaderbox">超声波测距应用系统监控可视化</div>
+				<div class="rightheader">
+					<div style="width: 100%;height: 50%;position: relative;">
+						<span id="rhspanf" class="rhspanf" style=" display: inline-block;width: 30px;height: 30px;position: absolute;right: 15px;top: 5px;cursor: pointer;" onclick="maxWindow()"></span>
+					</div>
+					<div style="width: 100%;height: 50%;">
+
+						<div class="timefresh">
+							<span class="rhspans" style="display: inline-block;width: 20px;height: 20px;
+							border-right: 1px solid white;margin:0 5px;"></span>时间标注：
+							<span class="timeShow"></span></div>
+
+					</div>
+				</div>
+
+
+
+
+
+			</div>
+			
+			<div class="echartonebox">
+				<div class="instore publicClass">
+					<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+					<div class="tiphead">
+						<p>[可视化-实时距离监控]</p>
+						<span>单位：m</span>
+					</div>
+					<div id="inechart">
+						<div id="income"></div>
+
+					</div>
+
+				</div>
+				<div class="outstore publicClass">
+					<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+					<div class="outstorehead">
+						<p>[可视化-采样点占比监控]</p>
+						<!--<span>单位：</span>-->
+					</div>
+
+					<div class="outstoretwo">
+						<button name="" onclick="adddis(1)">采样距离增加</button><button name=" "onclick="adddis(-1)">采样距离减小</button><br/>
+						<button name=""value="" onclick="addEl(1)">仰角增加</button><button name="" onclick="addEl(-1)">仰角减小</button><br/>
+
+						<button name="" onclick="clearTimer()">停止</button><button name="" onclick="reset()">重置</button>
+					</div>
+					<div class="outstorefoot">
+						控制按钮
+					</div>
+					<div class="outstoreone">
+						<div class="outstoreleft">
+							<div id="echartsproduct" style="width: 100%;height: 100px;"></div>
+							<div style="width: 100%;height: 20px;text-align: center;background: white;font-size: 14px;">低于阈值采样点占比监控</div>
+						</div>
+						<div class="outstoreright">
+							<div id="echartsbuy" style="width: 100%;height: 100px;"></div>
+							<div style="width: 100%;height: 20px;background: white;text-align: center;font-size: 14px;">低于10m采样点占比监控</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			
+			<div class="echarttwobox">
+				<div class="echartbottomleft publicClass">
+					<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+					<div class="outstorehead">
+						<p>[可视化-实际距离走势]</p>
+						<span>单位：m</span>
+					</div>
+					<div id="output">
+						
+					</div>
+				</div>
+				<div class="echartbottomright publicClass" >
+					<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+					<div class="outstorehead">
+						<p>[可视化-实时数据监控]</p>
+
+					</div>
+					<div class="outputlist">
+						<div class="listhead">
+							<div>-实时数据名称-</div>
+							<div>-实时数据值-</div>
+							<div>-单位-</div>
+						</div>
+						<div class="listbody">
+							<div class="listitem maxvalue">
+								<div>实际距离</div>
+								<div>0</div>
+								<div>m</div>
+							</div>
+							<div class="listitem maxvalue">
+								<div>阈值</div>
+								<div>0</div>
+								<div>m</div>
+							</div>
+							<div class="listitem">
+								<div>高度</div>
+								<div>0</div>
+								<div>m</div>
+							</div>
+							<div class="listitem">
+								<div>采样距离</div>
+								<div>0</div>
+								<div>m</div>
+							</div>
+							<div class="listitem">
+								<div>仰角</div>
+								<div>0</div>
+								<div>°</div>
+							</div>
+							<div class="listitem">
+								<div>采样时间</div>
+								<div>0</div>
+								<div>无</div>
+							</div>
+							<div class="listitem">
+								<div>备注</div>
+								<div>0</div>
+								<div>无</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</body>
+	<script language="JavaScript" src="../js/jquery/1.9.1/jquery.js"></script>
+	<script type="text/javascript" src="../js/echarts/echarts.js" ></script>
+	<script type="text/javascript" src="../js/echarts/echarts-gl.min.js" ></script>
+
+	<script>
+        var url = window.location.host;
+        var pathName =  window.document.location.pathname;
+        var projectName = pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+
+
+        function GetQueryString(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+        var selectconfigurl = '/system/config/getConfig';//获取配置信息
+
+        var selecturl = '/system/basedata/getBasedata';
+        function resfreshTime(){
+            var oDate = new Date(); //实例一个时间对象；
+            oDate.getFullYear();   //获取系统的年；
+            oDate.getMonth()+1;   //获取系统月份，由于月份是从0开始计算，所以要加1
+            oDate.getDate(); // 获取系统日，
+            oDate.getHours(); //获取系统时，
+            oDate.getMinutes(); //分("0"+oDate.getHours()).slice(-2)
+            oDate.getSeconds(); //秒
+            var time=oDate.getFullYear()+"-"+("0"+(oDate.getMonth()+1)).slice(-2)+"-"+("0"+oDate.getDate()).slice(-2)+" "+
+                ("0"+oDate.getHours()).slice(-2)+":"+("0"+oDate.getMinutes()).slice(-2)+":"+("0"+oDate.getSeconds()).slice(-2);
+            $(".timeShow").text(time)
+
+        }
+        resfreshTime();
+
+        function maxWindow(){
+            var height = screen.availHeight-50;
+			var openee = window.open ('storechart.html?', 'newwindow', 'top=0px,left=0px,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no,fullscreen=yes,screenX=0,screenY=0,height='+height+',width='+screen.availWidth)	;
+
+			window.setTimeout(function () {
+                openee.document.getElementById("rhspanf").setAttribute("style","display:none");
+            },1500)
+
+        }
+        echarts.dataTool.pr
+		var myEcharts1=echarts.init(document.getElementById("income"));
+
+		
+		
+		var myEcharts4=echarts.init(document.getElementById("echartsproduct"));
+		var myEcharts5=echarts.init(document.getElementById("echartsbuy"));
+		var myEcharts6=echarts.init(document.getElementById("output"));
+
+
+//		var option1={
+//            title: {
+//                text: ''
+//            },
+//            tooltip: {
+//               // triggerOn: 'none',
+//				show:true,
+//                formatter: function (params) {
+//                    return '距离X: ' + params.data[0].toFixed(3) + '<br>高度Y: ' + params.data[1].toFixed(3);
+//                }
+//            },
+//            grid: {
+//            },
+//            xAxis: {
+//                min: 0,
+//                max: 60,
+//                type: 'value',
+//                axisLine: {onZero: false},
+//                axisLabel: {
+//                    interval:0,
+//                    rotate:0,
+//                    color:"white"
+//                },
+//                splitLine:{//去掉网格线
+//                    show:false
+//                }
+//            },
+//            yAxis: {
+//                min: 0,
+//                max: 90,
+//                type: 'value',
+//                axisLabel: {
+//                    formatter: '{value}',
+//                    color:"#91ADCE"
+//                },
+//                axisLine: {onZero: false},
+//				 splitLine:{//去掉网格线
+//					 show:false
+//				 }
+//            },
+//
+//            series: [
+//                {
+//                    id: 'a',
+//					name:'距离',
+//                    type: 'line',
+////                    markPoint: {
+////                        symbolSize:50,
+////                        data: [{
+////                            type: 'min',
+////                            name: '最小值',
+////                            symbol:"pin",
+////                            itemStyle:{
+////                                color: "#ff5000"
+////                            }
+////
+////                        }]
+////                    },
+//                    smooth: false,//平滑
+//                    symbolSize: 25,
+//                    //symbol:path://./temp/1.png,
+//                    data: [],
+//                    itemStyle : {
+//                        normal : {
+//                            //color:"#859EBC",
+//
+//                            label : {
+//                                //show: true
+//                            }
+//                        }
+//                    }
+//
+//                }
+//            ]
+//        };
+
+        var option1={
+
+
+            tooltip: {
+
+                show:true,
+                formatter: function (params) {
+                    return '距离X: ' + params.data[0].toFixed(3) + '<br>高度Y: ' + params.data[1].toFixed(3);
+                }
+			},
+            backgroundColor: '#021637',
+            visualMap: {
+                show: false,
+                dimension: 2,
+                min: 0,
+                max: 60,
+                inRange: {
+                    color: [ '#ff5000']
+                }
+            },
+            xAxis3D: {
+                type: 'value',
+                min: 0,
+                max: 50,
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value}',
+                    color:"#91ADCE"
+                },
+                axisLine: {onZero: false}
+            },
+            yAxis3D: {
+                type: 'value',
+                min: 0,
+                max: 20,
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value}',
+                    color:"#91ADCE"
+                },
+                axisLine: {onZero: false}
+            },
+            zAxis3D: {
+                type: 'value',
+                min: 0,
+                max: 40,
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value}',
+                    color:"#91ADCE"
+                },
+                axisLine: {onZero: false}
+            },
+            grid3D: {
+                viewControl: {
+                    projection: 'orthographic'
+                },
+//				width:1000,
+                height:310
+            },
+            series: [{
+                type: 'line3D',
+                data: [],
+                lineStyle: {
+                    width: 5
+                }
+            }],
+            legend:{
+                width:100
+			}
+
+
+		};
+
+
+		
+		var option4={
+			title : {
+		        text: '',
+		        x:'center'
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    hoverAnimation:true,
+		 	color:[new echarts.graphic.LinearGradient(  //填充颜色的渐变
+                0, 0, 0, 1,[
+                    {offset: 0, color: '#399C66'},
+                    {offset: 0.5, color: '#20534A'},
+                    {offset: 1, color: '#103142'}
+                ]
+            ),'#ff5000',],
+		    series : [
+		        {
+		            name: '',
+		            type: 'pie',
+		            radius : '55%',
+		            center: ['50%', '60%'],
+		            data:[],
+		            itemStyle: {
+		                emphasis: {
+		                    shadowBlur: 10,
+		                    shadowOffsetX: 0,
+		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+		                }
+		            },
+                    label : {
+                        position:'outside',//inner
+                        formatter: '{b}-{c}',
+                        textStyle : {
+                            fontWeight : 'normal',
+                            fontSize : 12,
+                            color:"white"
+                        }
+                    },
+                    labelLine: {//引导线
+                        show: true,
+                        lineStyle:{//引导线颜色
+                            color:"white"
+                        }
+                    },
+		        }
+		    ]
+		}
+		
+		var option5={
+			title : {
+		        text: '',
+		        x:'center'
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    hoverAnimation:true,
+		 	color:[new echarts.graphic.LinearGradient(  //填充颜色的渐变
+                0, 0, 0, 1,[
+                    {offset: 0, color: '#399C66'},
+                    {offset: 0.5, color: '#20534A'},
+                    {offset: 1, color: '#103142'}
+                ]
+            ),'#ff5000'],
+		    series : [
+		        {
+		            name: '',
+		            type: 'pie',
+		            radius : '55%',
+		            center: ['50%', '60%'],
+		            data:[],
+		            itemStyle: {
+		                emphasis: {
+		                    shadowBlur: 10,
+		                    shadowOffsetX: 0,
+		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+		                }
+		            },
+                    label : {
+                        position:'outside',//inner
+                        formatter: '{b}-{c}',
+                        textStyle : {
+                            fontWeight : 'normal',
+                            fontSize : 12,
+                            color:"white"
+                        }
+                    },
+                    labelLine: {//引导线
+                        show: true,
+                        lineStyle:{//引导线颜色
+                            color:"white"
+                        }
+                    },
+		        }
+		    ]
+		}
+		
+		
+		
+		var option6= {
+		    title: {
+		        text: '',
+		        subtext: ''
+		    },
+		    tooltip: {
+		        trigger: 'axis'
+		    },
+
+            xAxis:  {
+		        type: 'category',
+		        boundaryGap: true,
+		        data: [],
+		        axisLabel: {  
+					interval:0,  
+					rotate:25,
+					color:"white"
+                }
+		    },
+		    yAxis: {
+		    	show:true,
+		        type: 'value',
+		        axisLabel: {
+		            formatter: '{value}',
+		            color:"#91ADCE"
+		        },
+                splitLine:{//去掉网格线
+                    show:false
+                }
+		    },
+		    series: [
+		        {
+		            name:'距离',
+		            type:'line',
+		            data:[],
+					smooth:true,
+		            markPoint: {
+		            	symbolSize:50,
+		                data: [{
+                            type: 'min',
+                            name: '最小值',
+                            symbol:"pin",
+                            itemStyle:{
+                                color: "#ff5000"
+                            }
+
+                        }]
+		            },
+                    itemStyle : {
+                        normal : {
+                            color:"#859EBC",
+                            lineStyle:{
+                                color:'#859EBC',//折线颜色
+                                width:0,//折线线条大小
+                            },
+                            areaStyle: {//区域填充
+                                type: 'default',
+                                color:new echarts.graphic.LinearGradient(  //填充颜色的渐变
+                                    0, 0, 0, 1,[
+                                        {offset: 0, color: '#399C66'},
+                                        {offset: 0.5, color: '#20534A'},
+                                        {offset: 1, color: '#103142'}
+                                    ]
+                                )
+                            },
+                            label : {
+                                show: true
+                            }
+                        }
+                    }
+		        }
+		    ]
+		};
+		
+		
+		//渲染
+		function render(){
+			return {
+				op1:function(){myEcharts1.setOption(option1)},
+				op4:function(){myEcharts4.setOption(option4)},
+				op5:function(){myEcharts5.setOption(option5)},
+				op6:function(){myEcharts6.setOption(option6)}
+			}
+		}
+		var administer=new render();
+		administer.op1()
+		administer.op4()
+		administer.op5()
+		administer.op6()
+
+        function timestampToTime(timestamp) {
+            var oDate = new Date(timestamp );//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+//                Y = date.getFullYear() + '-';
+//                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+//                D = date.getDate() + ' ';
+//                h = date.getHours() + ':';
+//                m = date.getMinutes() + ':';
+//                s = date.getSeconds();
+            var time=oDate.getFullYear()+"-"+("0"+(oDate.getMonth()+1)).slice(-2)+"-"+("0"+oDate.getDate()).slice(-2)+" "+
+                ("0"+oDate.getHours()).slice(-2)+":"+("0"+oDate.getMinutes()).slice(-2)+":"+("0"+oDate.getSeconds()).slice(-2);
+            return time;
+        }
+
+        var limit = 15;//页面限制查询条数
+		var startel=30;//重置角度
+		var startdis=10;//重置采样距离
+		var eladd = 1;//仰角增加值
+		var elreduce =-1;//仰角减小值
+		var disadd =1;//采样距离增加值
+		var disreduce=-1;//采样距离减小值
+
+
+		//获取配置信息
+		function getConfig() {
+			$.post(selectconfigurl,function (data) {
+				var tem = data.aaData;
+				$.each(tem,function (i,item) {
+					if(item.id=='limit' && !isnull(item.value)){
+					    limit = Number(item.value);
+					}else if(item.id=='startel' && !isnull(item.value)){
+                        startel =  Number(item.value);
+					}else if(item.id=='startdis' && !isnull(item.value)){
+                        startdis =  Number(item.value);
+                    }else if(item.id=='eladd' && !isnull(item.value)){
+                        eladd =  Number(item.value);
+                    }else if(item.id=='elreduce' && !isnull(item.value)){
+                        elreduce =  Number(item.value);
+                    }else if(item.id=='disadd' && !isnull(item.value)){
+                        disadd =  Number(item.value);
+                    }else if(item.id=='disreduce' && !isnull(item.value)){
+                        disreduce =  Number(item.value);
+                    }
+                })
+            });
+        }
+
+
+        //判断是否为空
+        function isnull(obj) {
+            if(obj==null || obj == ''){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+
+
+        function refresh(){
+
+            getConfig();
+
+            var endtime= ($("#starttime").val());
+            var endtime = ($("#endtime").val());
+            var json={limit:limit};
+
+            $.ajax({
+                "type": "POST",
+                "url": selecturl,
+                "contentType": "application/json; charset=utf-8",
+                "data": JSON.stringify(json),
+                "success": function (data) {
+                    obj=data.aaData[0];
+
+                   var temp =  data.aaData.reverse();
+                   //op1
+                    option1.series[0].data=[[0,10,obj.high],[obj.realdistace,10,0]];
+
+                    var threshold =Number(obj.threshold);//阈值
+
+                    //阈值判断
+                    if(obj.realdistace<= threshold){
+                        layer.msg("请注意，距离低于阈值！！");
+					}
+                    // option6
+                    var xda=[];//6x
+                    var yda=[];//6y
+					var ta=0;
+					var tb =0;
+					$.each(temp,function(i, item){
+						xda.push(timestampToTime(item.sampletime));
+						yda.push(Number(item.realdistace).toFixed(2));
+						if(item.realdistace<=threshold){
+						    ta += 1;
+						}
+                        if(item.realdistace<=10){
+                            tb += 1;
+                        }
+					})
+
+					//
+                    option4.series[0].data=[{value:(temp.length-ta),name:">"+threshold+"m:"},{value:ta,name:"<="+threshold+"m:"}];
+                    option5.series[0].data=[{value:(temp.length-tb),name:">10m:"},{value:tb,name:"<=10m:"}]
+
+                    option6.xAxis.data=xda;
+                    option6.series[0].data=yda
+                    administer.op1()
+                    administer.op4()
+                    administer.op5()
+                    administer.op6()
+					//实时数据
+                    $(".listbody").children("div").eq(0).children("div").eq(1).text(obj.realdistace);
+                    $(".listbody").children("div").eq(1).children("div").eq(1).text(obj.threshold);
+                    $(".listbody").children("div").eq(2).children("div").eq(1).text(obj.high);
+                    $(".listbody").children("div").eq(3).children("div").eq(1).text(obj.distance);
+                    $(".listbody").children("div").eq(4).children("div").eq(1).text(obj.elevation);
+                    $(".listbody").children("div").eq(5).children("div").eq(1).text(timestampToTime(obj.sampletime));
+                    $(".listbody").children("div").eq(6).children("div").eq(1).text(obj.marks?obj.marks:'');
+
+
+
+                }
+            });
+
+			
+
+
+		}
+		refresh();
+
+		setInterval(function(){
+			refresh();
+			
+		},800)
+        setInterval(function(){
+            resfreshTime();
+
+        },0)
+
+        function judge(arraydata){
+            Array.prototype.min = function() {
+                var min = this[0];
+                var index=[];
+                var len = this.length;
+                for (var i = 1; i < len; i++){
+                    if (this[i] < min){
+                        min = this[i];
+                    }
+                }
+
+                return min
+            }
+            //最大值
+            Array.prototype.max = function() {
+                var len = this.length;
+                var max = this[0];
+                var index=[];
+
+                for (var i = 1; i <len; i++){
+                    if (this[i] > max) {
+                        max = this[i];
+                    }
+                }
+
+                return max
+            }
+            return {min:arraydata.min(),max:arraydata.max()}
+        }
+        var obj;
+        var addurl = "/system/basedata/inserBasedata";
+
+
+
+        /**
+		 * 公用方法
+         * @param elevation
+         * @param distiance
+         * @param sampletime
+         * @param marks
+         */
+        function add(elevation,distiance) {
+            var json = {'elevation':elevation,
+                'distiance':distiance,
+                'sampletime':timestampToTime(new Date()),
+				'marks':'测试'
+            };
+            $.ajax({
+                'url' : addurl,
+                'type' : 'post',
+                'data' : json,
+               // "contentType": "application/json; charset=utf-8",
+                'success' : function(data, statusText) {
+                    if(data){
+                        layer.closeAll();
+                        console.log("添加成功！");
+                    }else{
+                        layer.msg("添加失败！");
+                    }
+
+                },
+                'error' : function(xhr, e1, e2) {
+                    layer.msg("系统错误！");
+                }
+
+            });
+        }
+
+        var addtimerdis;
+        var addtimerel;
+        //距离添加
+        function adddis(num) {
+            var t = 1;
+            if(num==1){
+                t=disadd;
+            }else if(num==-1){
+                t=disreduce;
+            }
+            clearInterval(addtimerdis);
+            addtimerdis=setInterval(function () {
+                add(obj.elevation,obj.distance+t);
+            },1000)
+        }
+
+        //仰角操作
+		function addEl(num) {
+            var t = 1;
+            if(num==1){
+                t=eladd;
+			}else if(num==-1){
+                t=elreduce;
+			}
+            clearInterval(addtimerel);
+            addtimerel=setInterval(function () {
+                add(obj.elevation+t,obj.distance);
+            },1000)
+        }
+
+        /**
+		 * 重置
+         */
+        function reset() {
+            clearInterval(addtimerdis);
+            clearInterval(addtimerel);
+           add(startel,startdis);
+
+        }
+
+        /**
+		 * 停止
+         */
+        function clearTimer() {
+            clearInterval(addtimerdis);
+            clearInterval(addtimerel);
+        }
+
+
+	</script>
+</html>
